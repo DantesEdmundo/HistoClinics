@@ -30,6 +30,7 @@
                         </div>
                         @if (Route::has('login'))
                             <nav class="-mx-3 flex flex-1 justify-end">
+                                <x-button outline yellow label="Yellow" />
                                 @auth
                                     <a
                                         href="{{ url('/dashboard') }}"
