@@ -21,8 +21,11 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->string('id_rol');
+            $table->unsignedBigInteger('id_rol');
             $table->timestamps();
+
+            $table->foreign('id_rol')->references('id')->on('roles');
+
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
