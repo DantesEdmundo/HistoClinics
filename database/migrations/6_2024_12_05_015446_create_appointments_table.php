@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
-            $table->string('id_patient');
-            $table->string('id_doctor');
+            $table->unsignedBigInteger('id_patient');
+            $table->unsignedBigInteger('id_doctor');
             $table->dateTime('date_time');
             $table->string('status')->default('asset'); // deje activo como predeterminado y cuando estemos en modelos debemos agregar esta caracteristica en usuarios 
             $table->timestamps();
+            $table->foreign('id_doctor')->references('id')->on('users');
+            $table->foreign('id_patient')->references('id')->on('user');
         });
     }
 

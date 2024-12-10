@@ -16,13 +16,14 @@ return new class extends Migration
             $table->string('name');
             $table->string('last_name');
             $table->date('birthdate');
-            $table->string('id_document_type');
+            $table->unsignedBigInteger('id_document_type');
             $table->integer('document_number');
             $table->text('address');
             $table->integer('phone');
             $table->string('EPS_affiliate');
             $table->string('affiliate_type');
             $table->timestamps();
+            $table->foreign('id_document_type')->references('id')->on('document_types');
         });
     }
 

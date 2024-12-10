@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('medical_order', function (Blueprint $table) {
             $table->id();
-            $table->string('id_medical_record');
+            $table->unsignedBigInteger('id_medical_record');
             $table->text('diagnosis');
-            $table->string('id_order_type');
+            $table->unsignedBigInteger('id_order_type');
             $table->string('description_order');
             $table->dateTime('date_time');
             $table->timestamps();
+            $table->foreign('id_order_type')->references('id')->on('order_type');
+            $table->foreign('id_medicañ_record')->references('id')->on('medical_records');
         });
     }
 

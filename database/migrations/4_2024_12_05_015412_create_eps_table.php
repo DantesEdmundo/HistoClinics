@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('eps', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('id_document_type');
+            $table->unsignedBigInteger('id_document_type');
             $table->integer('id_numbre');
             $table->timestamps();
+            $table->foreign('id_ducument_type')->references('id_document')->on('users');
         });
     }
 

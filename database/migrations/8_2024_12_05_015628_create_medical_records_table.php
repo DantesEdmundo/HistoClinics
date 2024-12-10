@@ -13,12 +13,15 @@ return new class extends Migration
     {
         Schema::create('medical_records', function (Blueprint $table) {
             $table->id();
-            $table->string('id_patient');
-            $table->string('id_doctor');
-            $table->string('id_current_eps');
+            $table->unsignedBigInteger('id_patient');
+            $table->unsignedBigInteger('id_doctor');
+            $table->unsignedBigInteger('id_current_eps');
             $table->dateTime('creation_date');
             $table->text('description');
             $table->timestamps();
+            $table->foreign('id_doctor')->references('id')->on('users');
+            $table->foreign('id_patient')->references('id')->on('patients');
+            $table->foreign('id_current_eps')->references('id')->on('eps');
         });
     }
 
