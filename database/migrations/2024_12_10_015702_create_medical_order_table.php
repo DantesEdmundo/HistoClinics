@@ -20,7 +20,7 @@ return new class extends Migration
             $table->dateTime('date_time');
             $table->timestamps();
             $table->foreign('id_order_type')->references('id')->on('order_type');
-            $table->foreign('id_medicañ_record')->references('id')->on('medical_records');
+            $table->foreign('id_medical_record')->references('id')->on('medical_records');
         });
     }
 

@@ -11,23 +11,26 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('appointments', function (Blueprint $table) {
+        Schema::create('medical_records', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_patient');
             $table->unsignedBigInteger('id_doctor');
-            $table->dateTime('date_time');
-            $table->string('status')->default('asset'); // deje activo como predeterminado y cuando estemos en modelos debemos agregar esta caracteristica en usuarios 
+            $table->unsignedBigInteger('id_current_eps');
+            $table->dateTime('creation_date');
+            $table->text('description');
             $table->timestamps();
             $table->foreign('id_doctor')->references('id')->on('users');
-            $table->foreign('id_patient')->references('id')->on('user');
+            $table->foreign('id_patient')->references('id')->on('patients');
+            $table->foreign('id_current_eps')->references('id')->on('eps');
         });
     }
+
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('appointments');
+        Schema::dropIfExists('medical_records');
     }
 };

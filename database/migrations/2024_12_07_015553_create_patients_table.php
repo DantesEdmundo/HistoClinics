@@ -11,21 +11,28 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('eps', function (Blueprint $table) {
+        Schema::create('patients', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('last_name');
+            $table->date('birthdate');
             $table->unsignedBigInteger('id_document_type');
-            $table->integer('id_numbre');
+            $table->integer('document_number');
+            $table->text('address');
+            $table->integer('phone');
+            $table->string('EPS_affiliate');
+            $table->string('affiliate_type');
             $table->timestamps();
-            $table->foreign('id_ducument_type')->references('id_document')->on('users');
+            $table->foreign('id_document_type')->references('id')->on('document_types');
         });
     }
+    
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('eps');
+        Schema::dropIfExists('patients');
     }
 };

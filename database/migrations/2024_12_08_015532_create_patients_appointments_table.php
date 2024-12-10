@@ -11,18 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('order_type', function (Blueprint $table) {
+        Schema::create('patients_appointments', function (Blueprint $table) {
             $table->id();
-            $table->string('name_order');
+            $table->unsignedBigInteger('id_patient');
+            $table->unsignedBigInteger('id_appointment');
             $table->timestamps();
+            $table->foreign('id_patient')->references('id')->on('patients');
+            $table->foreign('id_appointment')->references('id')->on('appointments');
         });
     }
+    
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('order_type');
+        Schema::dropIfExists('patients_appointments');
     }
 };

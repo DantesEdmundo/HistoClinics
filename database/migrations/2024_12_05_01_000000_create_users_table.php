@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('id_document_type');
+            $table->unsignedBigInteger('id_document_type');
             $table->integer('document_number');
             $table->string('name');
             $table->string('last_name');
@@ -24,7 +24,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_rol');
             $table->timestamps();
             $table->foreign('id_rol')->references('id')->on('roles');
-            $table->foreign('id_documennt_type')->references('id')->on('document_types');
+            $table->foreign('id_document_type')->references('id')->on('document_types');
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

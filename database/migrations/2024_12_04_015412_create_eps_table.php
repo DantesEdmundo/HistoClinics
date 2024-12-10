@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('document_types', function (Blueprint $table) {
+        Schema::create('eps', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('abreviature');
+            $table->unsignedBigInteger('id_document_type');
+            $table->integer('id_number');
             $table->timestamps();
+            $table->foreign('id_document_type')->references('id')->on('document_types');
         });
     }
 
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('document_types');
+        Schema::dropIfExists('eps');
     }
 };
