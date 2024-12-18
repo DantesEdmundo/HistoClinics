@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class rol extends Model
+class appointments extends Model
 {
-    use HasFactory;
+    protected $table = "appointment_table";
+
 
 
     public function user(): BelongsTo
