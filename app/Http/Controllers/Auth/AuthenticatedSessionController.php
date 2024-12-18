@@ -27,8 +27,15 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-
-        return redirect()->intended(route('dashboard', absolute: false));
+        //Este fragmento redirige al usuario a la vista correspondiente según su rol
+        switch(Auth::user()->id_rol) {
+            case 1:
+                return redirect()->intended(route('admin.users', absolute: false));
+            case 2:
+                echo'Facturador';
+            case 3:
+                echo'Medico';
+        }
     }
 
     /**
