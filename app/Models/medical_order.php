@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class medical_order extends Model
 {
@@ -12,14 +13,13 @@ class medical_order extends Model
     protected $table = "medical_order_table";
 
 
-    public function order_types(): HasMany
+    public function order_types(): HasOne
     {
-        return $this->hasMany(order_type::class);
+        return $this->hasOne(order_type::class);
     }
-
 
     public function medical_record(): BelongsTo
     {
-        return $this->belongsTo(medical_records::class);
+        return $this->belongsTo(medical_records::class, "id_medical_record");
     }
 }

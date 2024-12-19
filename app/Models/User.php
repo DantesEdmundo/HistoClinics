@@ -50,8 +50,14 @@ class User extends Authenticatable
 
     public function rol(): HasOne
     {
-        return $this->hasOne(rol::class);
+        return $this->hasOne(related: rol::class, foreignKey: 'id_rol');
     }
+
+    public function document_type(): HasOne
+    {
+        return $this->hasOne(related: document_type::class, foreignKey: 'id_document_type');
+    }
+
 
     public function appointments(): HasMany
     {

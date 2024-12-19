@@ -33,7 +33,6 @@
                                 <x-icon name="user" class="w-5 h-5" solid />
                                 <p class="text-xl">{{$user->name}} {{$user->last_name}}</p>
                                 <p class="text-base">{{$user->document_number}}</p>
-                                <p class="text-base">{{$user->email}}</p>
                             </div>
                             <div class="w-1/4 flex justify-end">
                                 <x-button right-icon="pencil" outline primary label="Editar" />

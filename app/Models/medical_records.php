@@ -25,6 +25,6 @@ class medical_records extends Model
 
     public function patient(): BelongsTo
     {
-        return $this->belongsTo(patients::class);
+        return $this->belongsTo(patients::class, "id_patient");
     }
 }

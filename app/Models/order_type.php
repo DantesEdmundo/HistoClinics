@@ -11,6 +11,6 @@ class order_type extends Model
     protected $table = "order_type";
     public function medical_order(): BelongsTo
     {
-        return $this->belongsTo(medical_order::class);
+        return $this->belongsTo(medical_order::class, "id_order_type");
     }
 }

@@ -11,8 +11,9 @@ class eps extends Model
     protected $table = "eps";
 
 
-    public function patient(): HasOne
+    public function document_type(): HasOne
     {
-        return $this->hasOne(patients::class);
+        return $this->hasOne(related: document_type::class, foreignKey: "id_document_type");
     }
+
 }

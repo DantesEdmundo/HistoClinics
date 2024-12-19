@@ -10,9 +10,10 @@ class rol extends Model
 {
     use HasFactory;
 
+    protected $table = "roles";
 
-    public function user(): BelongsTo
+    public function User(): BelongsTo
     {
-        return $this->belongsTo(user::class);
+        return $this->belongsTo(User::class);
     }
 }
