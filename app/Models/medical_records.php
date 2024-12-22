@@ -15,12 +15,12 @@ class medical_records extends Model
 
     public function medical_orders(): HasMany
     {
-        return $this->hasMany(medical_order::class);
+        return $this->hasMany(medical_order::class, foreignKey: 'id_medical_record');
     }
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(user::class);
+        return $this->belongsTo(user::class, foreignKey: 'id_rol');
     }
 
     public function patient(): BelongsTo

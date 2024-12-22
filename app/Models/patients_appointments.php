@@ -13,6 +13,6 @@ class patients_appointments extends Model
 
     public function patient(): BelongsTo
     {
-        return $this->belongsTo(patients::class);
+        return $this->belongsTo(patients::class, foreignKey: 'id');
     }
 }

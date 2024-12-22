@@ -15,5 +15,4 @@ class eps extends Model
     {
         return $this->hasOne(related: document_type::class, foreignKey: "id_document_type");
     }
-
 }

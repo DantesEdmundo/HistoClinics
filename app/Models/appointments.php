@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class appointments extends Model
@@ -11,6 +12,11 @@ class appointments extends Model
 
     public function User(): HasOne
     {
-        return $this->hasOne(related: User::class,foreignKey: "id_doctor");
+        return $this->hasOne(related: User::class, foreignKey: "id_rol");
+    }
+
+    public function medical_records(): HasMany
+    {
+        return $this->hasMany(medical_records::class, foreignKey: 'id_patient');
     }
 }

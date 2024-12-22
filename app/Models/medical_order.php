@@ -15,7 +15,7 @@ class medical_order extends Model
 
     public function order_types(): HasOne
     {
-        return $this->hasOne(order_type::class);
+        return $this->hasOne(order_type::class, foreignKey: 'name_order');
     }
 
     public function medical_record(): BelongsTo

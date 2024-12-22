@@ -15,7 +15,7 @@ class patients extends Model
 
     public function appointments(): BelongsToMany
     {
-        return $this->belongsToMany(appointments::class,"patients_appointments","id_patient", "id_appointment");
+        return $this->belongsToMany(appointments::class, "patients_appointments", "id_patient", "id_appointment");
     }
 
     public function document_type(): HasOne
@@ -25,7 +25,11 @@ class patients extends Model
 
     public function medical_records(): HasMany
     {
-        return $this->hasMany(medical_records::class,"id");
+        return $this->hasMany(medical_records::class, "id");
     }
 
+    public function patients_appointments(): HasMany
+    {
+        return $this->hasMany(patients_appointments::class, foreignKey: 'id_patient');
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -58,14 +59,18 @@ class User extends Authenticatable
         return $this->hasOne(related: document_type::class, foreignKey: 'id_document_type');
     }
 
+    public function appointment(): BelongsTo
+    {
+        return $this->belongsTo(related: appointments::class, foreignKey: 'id_doctor');
+    }
 
     public function appointments(): HasMany
     {
-        return $this->hasMany(appointments::class);
+        return $this->hasMany(appointments::class, foreignKey: 'id_doctor');
     }
 
     public function medical_records(): HasMany
     {
-        return $this->hasMany(medical_records::class);
+        return $this->hasMany(medical_records::class, foreignKey: 'id_doctor');
     }
 }
