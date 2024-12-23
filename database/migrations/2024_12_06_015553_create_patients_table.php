@@ -17,16 +17,16 @@ return new class extends Migration
             $table->string('last_name');
             $table->date('birthdate');
             $table->unsignedBigInteger('id_document_type');
+            $table->unsignedBigInteger('id_eps');
             $table->integer('document_number');
             $table->text('address');
-            $table->integer('phone');
-            $table->string('EPS_affiliate');
-            $table->string('affiliate_type');
+            $table->text('phone');
             $table->timestamps();
             $table->foreign('id_document_type')->references('id')->on('document_types');
+            $table->foreign('id_eps')->references('id')->on('eps');
         });
     }
-    
+
 
     /**
      * Reverse the migrations.

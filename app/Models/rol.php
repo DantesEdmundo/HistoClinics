@@ -12,8 +12,8 @@ class rol extends Model
 
     protected $table = "roles";
 
-    public function User(): BelongsTo
-    {
-        return $this->belongsTo(User::class, foreignKey: 'id_rol');
-    }
+    // public function User(): BelongsTo
+    // {
+    //     return $this->belongsTo(User::class, foreignKey: 'id_rol');
+    // }
 }

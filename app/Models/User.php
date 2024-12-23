@@ -51,26 +51,21 @@ class User extends Authenticatable
 
     public function rol(): HasOne
     {
-        return $this->hasOne(related: rol::class, foreignKey: 'id_rol');
+        return $this->hasOne(related: rol::class, foreignKey: 'id', localKey: 'id_rol');
     }
 
     public function document_type(): HasOne
     {
-        return $this->hasOne(related: document_type::class, foreignKey: 'id_document_type');
-    }
-
-    public function appointment(): BelongsTo
-    {
-        return $this->belongsTo(related: appointments::class, foreignKey: 'id_doctor');
+        return $this->hasOne(related: document_type::class, foreignKey: 'id', localKey: 'id_document_type');
     }
 
     public function appointments(): HasMany
     {
-        return $this->hasMany(appointments::class, foreignKey: 'id_doctor');
+        return $this->hasMany(appointments::class, foreignKey: 'id_doctor')->chaperone();
     }
 
     public function medical_records(): HasMany
     {
-        return $this->hasMany(medical_records::class, foreignKey: 'id_doctor');
+        return $this->hasMany(medical_records::class, foreignKey: 'id_doctor')->chaperone();
     }
 }

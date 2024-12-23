@@ -16,7 +16,6 @@ return new class extends Migration
             $table->unsignedBigInteger('id_patient');
             $table->unsignedBigInteger('id_doctor');
             $table->unsignedBigInteger('id_current_eps');
-            $table->dateTime('creation_date');
             $table->text('description');
             $table->timestamps();
             $table->foreign('id_doctor')->references('id')->on('users');

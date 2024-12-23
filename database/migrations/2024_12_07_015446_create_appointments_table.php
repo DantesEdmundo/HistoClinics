@@ -11,22 +11,24 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('patients_appointments', function (Blueprint $table) {
+        Schema::create('appointments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_patient');
-            $table->unsignedBigInteger('id_appointment');
+            $table->unsignedBigInteger('id_doctor');
+            $table->dateTime('date_time');
+            // Se debe crear una tabla de estados
+            $table->string('status')->default('asset'); // deje activo como predeterminado y cuando estemos en modelos debemos agregar esta caracteristica en usuarios
             $table->timestamps();
             $table->foreign('id_patient')->references('id')->on('patients');
-            $table->foreign('id_appointment')->references('id')->on('appointments');
+            $table->foreign('id_doctor')->references('id')->on('users');
         });
     }
-    
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('patients_appointments');
+        Schema::dropIfExists('appointments');
     }
 };
