@@ -23,7 +23,7 @@
                         </x-input>
                     </div>
                     <div class="w-auto">
-                        <x-button right-icon="plus" positive label="Crear usuario" />
+                        <x-button href="{{route('admin.create_user.view')}}" right-icon="plus" positive label="Crear usuario" />
                     </div>
                 </div>
                 <div class="flex flex-col mt-6 gap-4">

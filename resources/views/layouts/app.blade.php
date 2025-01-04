@@ -19,6 +19,18 @@
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
             @include('layouts.navigation')
 
+             <!-- Incluir WireUI Notifications -->
+            <x-notifications />
+
+            <!-- Mostrar Notificación desde la Sesión -->
+            @if (session('notification'))
+                <script>
+                    window.onload = () => {
+                        $wireui.notify(@json(session('notification')));
+                    }
+                </script>
+            @endif
+
             <!-- Page Heading -->
             @isset($header)
                 <header class="bg-white dark:bg-gray-800 shadow">

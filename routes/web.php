@@ -8,12 +8,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 //ADMIN ROUTES
-Route::get('admin/users', [AdminController::class, 'getUsersView'])
-    ->middleware(['auth', 'verified'])
-    ->name('admin.users');
+    Route::get('admin/users', [AdminController::class, 'getUsersView'])
+        ->middleware(['auth', 'verified'])
+        ->name('admin.users');
 
+    Route::get('admin/users/create', [AdminController::class,'createNewUserView'])
+    ->middleware(['auth', 'verified'])
+    ->name('admin.create_user.view');
+
+    Route::post('admin/users/create', [AdminController::class,'createUser'])
+    ->middleware(['auth', 'verified'])
+    ->name('admin.create_user.post');
 
 
 Route::middleware('auth')->group(function () {
