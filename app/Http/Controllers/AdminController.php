@@ -11,8 +11,7 @@ use Faker\Factory as Faker;
 class AdminController extends Controller
 {
     public function getUsersView(){
-        $users = User::all();
-        return view("admin.users")->with("users", $users);
+        return view("admin.users");
     }
 
     public function createNewUserView(){
