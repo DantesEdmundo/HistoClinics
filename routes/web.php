@@ -14,13 +14,16 @@ Route::get('/', function () {
         ->name('admin.users');
 
     Route::get('admin/users/create', [AdminController::class,'createNewUserView'])
-    ->middleware(['auth', 'verified'])
-    ->name('admin.create_user.view');
+        ->middleware(['auth', 'verified'])
+        ->name('admin.create_user.view');
 
     Route::post('admin/users/create', [AdminController::class,'createUser'])
-    ->middleware(['auth', 'verified'])
-    ->name('admin.create_user.post');
+        ->middleware(['auth', 'verified'])
+        ->name('admin.create_user.post');
 
+    Route::get('admin/users/edit/{userId}', [AdminController::class,'editUserView'])
+        ->middleware(['auth', 'verified'])
+        ->name('admin.edit_user.view');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

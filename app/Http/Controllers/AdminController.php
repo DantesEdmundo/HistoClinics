@@ -63,5 +63,23 @@ class AdminController extends Controller
         ]);
 
         return redirect()->route('admin.users')
-            ->with('success', 'User created successfully.');}
+            ->with('success', 'User created successfully.');
+    }
+
+    public function EditUserView($userId){
+        $roles = rol::select('id', 'name')->get()->toArray();
+        $document_types = document_type::select('id', 'name')->get()->toArray();
+        $selected_document_type = ['id' => 1, 'name' => 'Cedula de ciudadania'];
+
+        $user = User::where('id',$userId)
+            ->with(['rol', 'document_type'])
+            ->first();
+
+        return view("admin/users_edit")
+            ->with("roles", $roles)
+            ->with("document_types", $document_types)
+            ->with("selectec_document", $selected_document_type)
+            ->with("user", $user);
+    }
+
 }

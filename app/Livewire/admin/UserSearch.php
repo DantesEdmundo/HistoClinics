@@ -14,7 +14,7 @@ class UserSearch extends Component
         $usersAll = User::where('name', 'like', '%' . $this->search . '%')
             ->orWhere('last_name', 'like', '%' . $this->search . '%')
             ->with(['rol', 'document_type']) // Asegúrate de cargar relaciones necesarias
-            ->get();
+            ->paginate(5);
 
         return view('livewire.admin.user-search', compact('usersAll'));
     }

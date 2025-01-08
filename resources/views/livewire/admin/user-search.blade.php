@@ -21,7 +21,7 @@
                 @endif
 
                 @foreach ($usersAll as $user)
-                <div class="flex flex-row gap-x-2 bg-white shadow rounded-lg p-4 border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+                <div class="flex flex-row gap-x-2 bg-white shadow rounded-lg px-4 py-1 border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
                     <div class="flex flex-row items-center justify-start gap-x-6 w-3/4">
                         <img class="w-8" src="{{ Vite::asset('resources/img/user.png') }}" alt="user Image">
                         <div class="flex flex-col">
@@ -31,10 +31,15 @@
                         </div>
                     </div>
                     <div class="w-1/4 flex justify-end items-center">
-                        <x-button class="h-10" right-icon="pencil" outline secondary label="Editar" />
+                        <x-button class="h-10" right-icon="pencil" outline secondary label="Editar" href="{{route('admin.edit_user.view', ['userId' => $user->id])}}" />
                     </div>
                 </div>
                 @endforeach
+
+                <div class="mt-6 flex justify-center">
+                    {{ $usersAll->links('pagination::tailwind') }}
+                </div>
+
             </div>
         </div>
     </div>
