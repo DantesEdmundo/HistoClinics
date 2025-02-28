@@ -33,8 +33,8 @@ class BillerController extends Controller
     {
 
         $request->validate([
-            'id' => 'required|exists:patients',
-            'id_user' => 'required|exists:users,id',
+            'id' => 'required|',
+            'id_user' => 'required',
             'date_appointment' => 'required',
 
 

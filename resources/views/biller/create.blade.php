@@ -23,8 +23,8 @@
                             placeholder="Selecciona un Paciente" :options="$patientall" option-label="name"
                             option-value="id" />
 
-                        <x-datetime-picker name='data_appointment' label="Seleccione fecha y hora"
-                            placeholder="Seleccione fecha y hora" parse-format="Y-m-d" />
+                        <x-datetime-picker name='date_appointment' label="Seleccione fecha y hora"
+                            placeholder="Seleccione fecha y hora" />
 
                         <x-button type="submit" class="m-2 mt-8" label="Crear Cita" />
 
