@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class appointments extends Model
 {
-    protected $table = "appointment_table";
+    protected $table = "appointments";
 
     public function User(): HasOne
     {
@@ -19,4 +19,7 @@ class appointments extends Model
     {
         return $this->hasMany(medical_records::class, foreignKey: 'id_patient');
     }
+
+    protected $fillable = ['id', 'id_patient', 'id_doctor', 'date_time', 'status'];
+    public $timestamps = false;
 }

@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class patients extends Model
 {
     //
-    protected $table = "patients_table";
+    protected $table = "patients";
 
     public function appointments(): BelongsToMany
     {
