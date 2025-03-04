@@ -11,9 +11,9 @@ class appointments extends Model
     protected $table = "appointments";
     protected $fillable = ['id', 'id_patient', 'id_doctor', 'date_time', 'status'];
     public $timestamps = false;
-    public function User(): HasOne
+    public function doctor(): HasOne
     {
-        return $this->hasOne(related: User::class, foreignKey: "id_rol");
+        return $this->hasOne(related: User::class, foreignKey: "id");
     }
 
     public function patient(): HasOne

@@ -18,7 +18,7 @@ class BillerController extends Controller
     public function biller_management()
     {
 
-        $allappointment = appointments::with(['patient'])->get();
+        $allappointment = appointments::with(['patient', 'doctor'])->get();
 
 
         return view('biller.biller_management', compact('allappointment'));

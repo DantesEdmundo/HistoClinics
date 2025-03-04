@@ -12,29 +12,35 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800  shadow-sm sm:rounded-lg p-8">
 
-                <table class="caption-top">
+                <table class="w-full border-collapse bg-white shadow-md rounded-lg overflow-hidden">
                     <thead>
-                        <tr>
-                            <th>Nombre del Paciente</th>
-                            <th>Nombre del Medico</th>
-                            <th>Fecha y Hora</th>
-                            <th>Opciones</th>
+                        <tr class="bg-gray-200 text-gray-700 uppercase text-sm font-semibold">
+                            <th class="px-6 py-3 text-left">Nombre del Paciente</th>
+                            <th class="px-6 py-3 text-left">Nombre del Médico</th>
+                            <th class="px-6 py-3 text-left">Fecha y Hora</th>
+                            <th class="px-6 py-3 text-center">Opciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            @foreach ($allappointment as $appointment)
+                        @foreach ($allappointment as $appointment)
+                            <tr class="border-b hover:bg-gray-100 transition duration-200">
+                                <td class="px-6 py-4 text-gray-700">
+                                    {{ $appointment->patient->name }} {{ $appointment->patient->last_name }}
+                                </td>
+                                <td class="px-6 py-4 text-gray-700">
+                                    {{ $appointment->doctor->name }} <p class="text-sm text-gray-500">({{ $appointment->doctor->rol->name }})</p>
+                                </td>
+                                <td class="px-6 py-4 text-gray-700">
+                                    {{ $appointment->date_time }}
+                                </td>
+                                <td class="px-6 py-4 text-center">
+                                    <x-button warning label="Editar" />
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
 
-
-                                    <td> {{ $appointment->date_time}} </td>
-
-                                    <td> {{ $appointment->patient->name}} </td>
-
-                                    <td><x-button warning label="Editar" />
-
-                                    </td>
-                                </tr>
-                            @endforeach
             </div>
         </div>
     </div>
