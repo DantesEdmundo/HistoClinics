@@ -36,6 +36,8 @@ Route::get('biller/create', [billerController::class, 'biller_create'])->middlew
 
 Route::post('biller/store', [billerController::class, 'biller_store'])->middleware(['auth', 'verified'])->name('biller.store');
 
+Route::put('biller/edit/{appointments}', [billerController::class, 'edit'])->middleware(['auth', 'verified'])->name('biller.edit');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

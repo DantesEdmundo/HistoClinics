@@ -12,7 +12,7 @@ class patients extends Model
 {
     //
     protected $table = "patients";
-
+    protected $fillable = ['id', 'name', 'last_name', 'birthdate', 'id_document_type', 'id_eps', 'document_number', 'address', 'phone'];
     public function appointments(): BelongsToMany
     {
         return $this->belongsToMany(appointments::class, "patients_appointments", "id_patient", "id_appointment");

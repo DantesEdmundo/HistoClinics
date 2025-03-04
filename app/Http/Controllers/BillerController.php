@@ -10,13 +10,34 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Faker\Factory as Faker;
 use Illuminate\Validation\Rule;
+use Illuminate\View\Concerns\ManagesFragments;
+
 
 class BillerController extends Controller
 {
     public function biller_management()
     {
-        return view('biller.biller_management');
+
+        $allappointment = appointments::with(['patient'])->paginate(5);
+
+
+        return view('biller.biller_management', compact('allappointment'));
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function biller_create()
     {
         $doctorall = User::select('id', 'name')->where('id_rol', 3)->get()->toArray();
@@ -58,5 +79,27 @@ class BillerController extends Controller
         ]);
         return redirect()->route('biller.create')
             ->with('success', 'Appointment created successfully.');
+    }
+
+    public function biller_edit(Request $request, appointments $appointments)
+    {
+
+        $request->validate([
+            'id' => 'required|',
+            'id_user' => 'required',
+            'date_appointment' => 'required',
+        ]);
+
+        $appointments->edit($request->all());
+
+
+        // Send a WireUI notification
+        session()->flash('notification', [
+            'title'       => 'Cita editada',
+            'description' => 'Se ha editado la cita correctamente',
+            'icon'        => 'success',
+        ]);
+        return redirect()->route('biller.edit')
+            ->with('success', 'Appointment edit created successfully.');
     }
 }
