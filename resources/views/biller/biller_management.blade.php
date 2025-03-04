@@ -28,7 +28,7 @@
 
                                     <td> {{ $appointment->date_time}} </td>
 
-                                    <td> {{ $appointment->patient}} </td>
+                                    <td> {{ $appointment->patient->name}} </td>
 
                                     <td><x-button warning label="Editar" />
 
