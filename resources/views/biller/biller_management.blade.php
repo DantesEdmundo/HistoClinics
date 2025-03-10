@@ -28,13 +28,16 @@
                                     {{ $appointment->patient->name }} {{ $appointment->patient->last_name }}
                                 </td>
                                 <td class="px-6 py-4 text-gray-700">
-                                    {{ $appointment->doctor->name }} <p class="text-sm text-gray-500">({{ $appointment->doctor->rol->name }})</p>
+                                    {{ $appointment->doctor->name }}
+                                    <p class="text-sm text-gray-500">({{ $appointment->doctor->rol->name }})</p>
                                 </td>
                                 <td class="px-6 py-4 text-gray-700">
                                     {{ $appointment->date_time }}
                                 </td>
                                 <td class="px-6 py-4 text-center">
-                                    <x-button warning label="Editar" />
+                                    <a href="{{ route('biller.edit', ['appointments' => $appointment->id]) }}">
+                                        <x-button positive label="Editar" />
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach
@@ -45,4 +48,7 @@
         </div>
     </div>
     <x-notifications />
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
+    @livewireScripts
+
 </x-app-layout>

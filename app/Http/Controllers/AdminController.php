@@ -10,19 +10,21 @@ use Faker\Factory as Faker;
 
 class AdminController extends Controller
 {
-    public function getUsersView(){
+    public function getUsersView()
+    {
         return view("admin.users");
     }
 
-    public function createNewUserView(){
+    public function createNewUserView()
+    {
         $roles = rol::select('id', 'name')->get()->toArray();
         $document_types = document_type::select('id', 'name')->get()->toArray();
 
         $faker = Faker::create('es_ES');
         $testData = [
-            'first_name'=> $faker->firstName,
-            'last_name'=> $faker->lastName,
-            'email'=> $faker->email,
+            'first_name' => $faker->firstName,
+            'last_name' => $faker->lastName,
+            'email' => $faker->email,
             'document_num' => $faker->randomNumber(7, true),
         ];
 
@@ -66,12 +68,13 @@ class AdminController extends Controller
             ->with('success', 'User created successfully.');
     }
 
-    public function EditUserView($userId){
+    public function EditUserView($userId)
+    {
         $roles = rol::select('id', 'name')->get()->toArray();
         $document_types = document_type::select('id', 'name')->get()->toArray();
         $selected_document_type = ['id' => 1, 'name' => 'Cedula de ciudadania'];
 
-        $user = User::where('id',$userId)
+        $user = User::where('id', $userId)
             ->with(['rol', 'document_type'])
             ->first();
 
@@ -81,5 +84,4 @@ class AdminController extends Controller
             ->with("selectec_document", $selected_document_type)
             ->with("user", $user);
     }
-
 }

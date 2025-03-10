@@ -25,19 +25,6 @@ class BillerController extends Controller
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     public function biller_create()
     {
         $doctorall = User::select('id', 'name')->where('id_rol', 3)->get()->toArray();
@@ -84,22 +71,36 @@ class BillerController extends Controller
     public function biller_edit(Request $request, appointments $appointments)
     {
 
+        $doctorall = User::select('id', 'name')->where('id_rol', 3)->get()->toArray();
+        $patientall = patients::select('id', 'name')->get()->toArray();
+
+
+
+        return view('biller.edit', compact('appointments', 'doctorall', 'patientall'));
+    }
+
+    public function biller_update(Request $request, appointments $appointments)
+    {
+
         $request->validate([
-            'id' => 'required|',
-            'id_user' => 'required',
-            'date_appointment' => 'required',
+            'id_user' => 'required|exists:users,id',
+            'id' => 'required|exists:patients,id',
+            'date_appointment' => 'required|date',
         ]);
 
-        $appointments->edit($request->all());
+
+        $appointments->id_patient = $request->id;
+        $appointments->id_doctor = $request->id_user;
+        $appointments->date_time = $request->date_appointment;
+        $appointments->save();
 
 
-        // Send a WireUI notification
         session()->flash('notification', [
-            'title'       => 'Cita editada',
+            'title'       => 'Cita Editada',
             'description' => 'Se ha editado la cita correctamente',
             'icon'        => 'success',
         ]);
-        return redirect()->route('biller.edit')
-            ->with('success', 'Appointment edit created successfully.');
+
+        return redirect()->route('biller.management')->with('success', 'Appointment updated successfully.');
     }
 }
