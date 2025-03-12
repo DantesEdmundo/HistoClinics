@@ -36,7 +36,7 @@ Route::get('biller/create', [billerController::class, 'biller_create'])->middlew
 
 Route::post('biller/store', [billerController::class, 'biller_store'])->middleware(['auth', 'verified'])->name('biller.store');
 
-Route::get('biller/edit/{appointments}', [billerController::class, 'biller_edit'])->middleware(['auth', 'verified'])->name('biller.edit');
+Route::get('biller/edit/{appointment_id}', [billerController::class, 'biller_edit'])->middleware(['auth', 'verified'])->name('biller.edit');
 
 Route::put('/biller/update/{appointments}', [BillerController::class, 'biller_update'])->middleware(['auth', 'verified'])->name('biller.update');
 

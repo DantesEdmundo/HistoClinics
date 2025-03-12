@@ -68,13 +68,10 @@ class BillerController extends Controller
             ->with('success', 'Appointment created successfully.');
     }
 
-    public function biller_edit(Request $request, appointments $appointments)
+    public function biller_edit(Request $request, $appointment_id)
     {
 
-        $doctorall = User::select('id', 'name')->where('id_rol', 3)->get()->toArray();
-        $patientall = patients::select('id', 'name')->get()->toArray();
-
-
+        dd($appointment_id);
 
         return view('biller.edit', compact('appointments', 'doctorall', 'patientall'));
     }

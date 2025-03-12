@@ -35,7 +35,7 @@
                                     {{ $appointment->date_time }}
                                 </td>
                                 <td class="px-6 py-4 text-center">
-                                    <a href="{{ route('biller.edit', ['appointments' => $appointment->id]) }}">
+                                    <a href="{{ route('biller.edit', $appointment->id) }}">
                                         <x-button positive label="Editar" />
                                     </a>
                                 </td>
