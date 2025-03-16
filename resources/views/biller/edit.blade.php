@@ -1,35 +1,39 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex flex-row items-center">
-            <x-mini-button href="{{route('biller.edit')}}" rounded icon="arrow-left" flat gray interaction:solid />
+            <x-mini-button href="{{route('biller.management')}}" rounded icon="arrow-left" flat gray
+                interaction:solid />
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight ml-2">
-                {{ __('editar Citas') }}
+                {{ __('Editar Citas') }}
             </h2>
         </div>
+    </x-slot>
+    <div class="py-6">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-gray-800  shadow-sm sm:rounded-lg p-8">
+                <form method="POST" action="{{ route('biller.update') }}">
+                    @csrf
 
-        <form method="POST" action="{{ route('biller.update', $appointments) }}">
-            @csrf
-            @method('PUT')
-            <div class="flex flex-row justify-between flex-wrap">
+                    <div class="flex flex-row justify-between flex-wrap">
 
-                <x-select name="id_user" class="!w-1/2 p-2" label="Nombre del Medico" placeholder="Selecciona un Medico"
-                    :options="$doctorall" option-label="name" />
+                        <input type="hidden" value={{$appointment->id}} name="appointment_id" />
 
-                <x-select name="id" class="!w-1/2 p-2" label="Nombre del Paciente" placeholder="Selecciona un Paciente"
-                    :options="$patientall" option-label="name" option-value="id"
-                    value="{{ $appointments->patient->name }} {{ $appointments->patient->last_name }}" />
+                        <x-input label="Nombre de paciente"
+                            value="{{ $appointment->patient->name }} {{ $appointment->patient->last_name }}" disabled />
 
-                <x-datetime-picker name='date_appointment' label="Seleccione fecha y hora"
-                    placeholder="Seleccione fecha y hora" value="{{ $appointments->date_time }}" />
+                        <x-select name="id_user" class="!w-1/2 p-2" label="Nombre del Medico"
+                            placeholder="Selecciona un Medico" :options="$doctorall" option-label="name"
+                            option-value="id" />
 
-                <x-button type="submit" class="m-2 mt-8" label="Editar Cita" />
+
+                        <x-datetime-picker name='date_appointment' label="Seleccione fecha y hora"
+                            placeholder="Seleccione fecha y hora" />
+
+                        <x-button type="submit" class="m-2 mt-8" label="Editar Cita" />
+                    </div>
+                </form>
             </div>
-        </form>
         </div>
-        </div>
-        </div>
-        <x-notifications />
-        <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
-        @livewireScripts
+    </div>
 
 </x-app-layout>

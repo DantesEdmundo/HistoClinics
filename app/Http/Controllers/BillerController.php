@@ -71,26 +71,28 @@ class BillerController extends Controller
     public function biller_edit(Request $request, $appointment_id)
     {
 
-        dd($appointment_id);
 
-        return view('biller.edit', compact('appointments', 'doctorall', 'patientall'));
+        $appointment = appointments::where('id', $appointment_id)->with(['patient', 'doctor'])->first();
+        $doctorall = User::select('id', 'name')->where('id_rol', 3)->get()->toArray();
+
+
+
+        return view('biller.edit', compact('appointment', 'doctorall'));
     }
 
-    public function biller_update(Request $request, appointments $appointments)
+    public function biller_update(Request $request)
     {
 
         $request->validate([
+            'appointment_id' => 'required|exists:appointments,id',
             'id_user' => 'required|exists:users,id',
-            'id' => 'required|exists:patients,id',
             'date_appointment' => 'required|date',
         ]);
 
-
-        $appointments->id_patient = $request->id;
-        $appointments->id_doctor = $request->id_user;
-        $appointments->date_time = $request->date_appointment;
-        $appointments->save();
-
+        $appointment = Appointments::where('id', $request->appointment_id)->first();
+        $appointment->id_doctor = $request->id_user;
+        $appointment->date_time = $request->date_appointment;
+        $appointment->save();
 
         session()->flash('notification', [
             'title'       => 'Cita Editada',
