@@ -15,11 +15,11 @@
                     @csrf
                     <div class="flex flex-row justify-between flex-wrap">
 
-                        <x-select name="id_user" class="!w-1/2 p-2" label="Nombre del Medico"
+                        <x-select name="id_doctor" class="!w-1/2 p-2" label="Nombre del Medico"
                             placeholder="Selecciona un Medico" :options="$doctorall" option-label="name"
                             option-value="id" />
 
-                        <x-select name="id" class="!w-1/2 p-2" label="Nombre del Paciente"
+                        <x-select name="id_patient" class="!w-1/2 p-2" label="Nombre del Paciente"
                             placeholder="Selecciona un Paciente" :options="$patientall" option-label="name"
                             option-value="id" />
 

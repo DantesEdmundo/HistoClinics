@@ -19,7 +19,7 @@ class BillerController extends Controller
     {
 
         $allappointment = appointments::with(['patient', 'doctor'])->get();
-
+        // dd($allappointment);
 
         return view('biller.biller_management', compact('allappointment'));
     }
@@ -41,16 +41,15 @@ class BillerController extends Controller
     {
 
         $request->validate([
-            'id' => 'required|',
-            'id_user' => 'required',
+            'id_patient' => 'required|exists:patients,id',
+            'id_doctor' => 'required|exists:users,id',
             'date_appointment' => 'required',
-
-
-
         ]);
+
+
         $appoinmets = new appointments();
-        $appoinmets->id_patient = $request->id;
-        $appoinmets->id_doctor = $request->id_user;
+        $appoinmets->id_patient = $request->id_patient;
+        $appoinmets->id_doctor = $request->id_doctor;
         $appoinmets->date_time = $request->date_appointment;
         $appoinmets->status = 'ok';
 
@@ -64,7 +63,9 @@ class BillerController extends Controller
             'description' => 'Se ha creado la cita correctamente',
             'icon'        => 'success',
         ]);
-        return redirect()->route('biller.create')
+
+        // Aquí se debe redirigir a la vista de la lista de citas para una mejor experiencia de usuario
+        return redirect()->route('biller.management')
             ->with('success', 'Appointment created successfully.');
     }
 

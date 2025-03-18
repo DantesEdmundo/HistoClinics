@@ -18,7 +18,7 @@ class appointments extends Model
 
     public function patient(): HasOne
     {
-        return $this->hasOne(related: patients::class, foreignKey: "id");
+        return $this->hasOne(related: patients::class, foreignKey: "id", localKey: "id_patient");
     }
 
     public function medical_records(): HasMany
