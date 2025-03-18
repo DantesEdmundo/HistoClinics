@@ -102,4 +102,31 @@ class BillerController extends Controller
 
         return redirect()->route('biller.management')->with('success', 'Appointment updated successfully.');
     }
+
+    public function biller_delete($appointment_id)
+    {
+
+        $appointment = appointments::find($appointment_id);
+
+
+        if ($appointment) {
+
+            $appointment->delete();
+
+            session()->flash('notification', [
+                'title'       => 'Cita Eliminada',
+                'description' => 'La cita se ha eliminado correctamente',
+                'icon'        => 'success',
+            ]);
+        } else {
+
+            session()->flash('notification', [
+                'title'       => 'Error',
+                'description' => 'No se pudo encontrar la cita',
+                'icon'        => 'error',
+            ]);
+        }
+
+        return redirect()->route('biller.management');
+    }
 }

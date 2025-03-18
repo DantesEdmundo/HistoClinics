@@ -6,13 +6,20 @@
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight ml-2">
                 {{ __('Gestion de Citas') }}
             </h2>
+            <div class="ml-auto">
+                <x-button class="px-6 py-3" href="{{ route('biller.create') }}" rounded="md" positive
+                    label="Crear Citas" />
+            </div>
         </div>
     </x-slot>
     <div class="py-6">
+
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+
             <div class="bg-white dark:bg-gray-800  shadow-sm sm:rounded-lg p-8">
 
                 <table class="w-full border-collapse bg-white shadow-md rounded-lg overflow-hidden">
+
                     <thead>
                         <tr class="bg-gray-200 text-gray-700 uppercase text-sm font-semibold">
                             <th class="px-6 py-3 text-left">Nombre del Paciente</th>
@@ -37,11 +44,19 @@
                                 <td class="px-6 py-4 text-center">
                                     <a href="{{ route('biller.edit', $appointment->id) }}">
                                         <x-button positive label="Editar" />
+
+                                    </a>
+                                    <a href="{{ route('biller.delete', $appointment->id) }}" method="POST"
+                                        onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta cita?');">
+                                        @csrf
+
+                                        <x-button negative label="Eliminar" />
                                     </a>
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
+
                 </table>
 
             </div>

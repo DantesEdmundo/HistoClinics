@@ -13,7 +13,7 @@ class appointments extends Model
     public $timestamps = false;
     public function doctor(): HasOne
     {
-        return $this->hasOne(related: User::class, foreignKey: "id");
+        return $this->hasOne(related: User::class, foreignKey: "id", localKey: "id_doctor");
     }
 
     public function patient(): HasOne

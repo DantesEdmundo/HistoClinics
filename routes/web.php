@@ -40,6 +40,11 @@ Route::get('biller/edit/{appointment_id}', [billerController::class, 'biller_edi
 
 Route::post('/biller/update', [BillerController::class, 'biller_update'])->middleware(['auth', 'verified'])->name('biller.update');
 
+
+Route::get('/biller/delete/{appointment_id}', [BillerController::class, 'biller_delete'])->name('biller.delete');
+
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
