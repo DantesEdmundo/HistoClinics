@@ -9,7 +9,7 @@ class eps extends Model
 {
     //
     protected $table = "eps";
-
+    protected $fillable = ['id', 'name', 'id_document_type', 'id_number'];
 
     public function document_type(): HasOne
     {

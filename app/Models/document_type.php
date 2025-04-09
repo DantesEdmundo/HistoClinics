@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class document_type extends Model
 {
+
+    protected $table = "document_types";
+    protected $fillable = ['id', 'name', 'abreviature'];
+
     // public function User(): BelongsTo
     // {
     //     return $this->belongsTo(User::class, foreignKey: 'id_document_type');
