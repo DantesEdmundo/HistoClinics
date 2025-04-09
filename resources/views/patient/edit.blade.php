@@ -16,7 +16,7 @@
                     @csrf
                     <div class="flex flex-row justify-between flex-wrap">
 
-                        <x-input icon="user" name="name" label="Nombres" value="{{ $patient->name }}" />
+                        <x-input icon="user" name="name" label="Nombres" value="{{ old('name', $patient->name) }}" />
 
                         <x-input icon="user" name="last_name" label="Apellidos" value="{{ $patient->last_name }}" />
 

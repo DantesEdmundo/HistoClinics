@@ -15,15 +15,16 @@
                     @csrf
                     <div class="flex flex-row justify-between flex-wrap">
 
-                        <x-input icon="user" name="name" label="Nombres" placeholder="Nombres" />
+                        <x-input icon="user" name="name" label="Nombres" placeholder="Nombres"
+                            value="{{ old('name') }}" />
 
-                        <x-input icon="user" name="last_name" label="Apellidos" placeholder="Apellidos" />
+                        <x-input icon="user" name="last_name" label="Apellidos" placeholder="Apellidos"
+                            value="{{ old('name') }}" />
 
                         <x-datetime-picker wire:model.live="model6" name="birthdate" label="Fecha de nacimiento"
                             placeholder="Fecha de nacimiento" without-time />
 
-                        <x-input name="document_number" label="Número de Documento"
-                            value="{{ $patient->document_number }}" />
+
                         <x-select name="id_document_type" class="!w-1/2 p-2" label="Tipo de Documento"
                             placeholder="Seleccione el tipo" :options="$alldocument" option-label="name"
                             option-value="id" />
@@ -31,8 +32,8 @@
                         <x-select name="id_eps" class="!w-1/2 p-2" label="Seleccione EPS" placeholder="Seleccione EPS"
                             :options="$alleps" option-label="name" option-value="id" />
 
-                        <x-input icon="user" name="document_number" label="Numero de Documento"
-                            placeholder="Numero de Documento" />
+                        <x-input icon="user" name="document_number" label="Número de Documento"
+                            placeholder="Número de Documento" value="{{ old('document_number') }}" />
 
                         <x-input icon="home" name="address" label="Dirreccion" placeholder="Dirrecion" />
 
